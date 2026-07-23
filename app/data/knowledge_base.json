@@ -1,0 +1,45 @@
+[
+  {
+    "intent": "meal_plan",
+    "label": "Speiseplan",
+    "keywords": ["essen", "mittagessen", "speiseplan", "menü", "vegetarisch", "mensa"],
+    "answer": "Heute gibt es Vollkornnudeln mit Tomatensoße. Als vegetarische Alternative gibt es Ofengemüse mit Kräuterquark. Alle Angaben stammen aus dem Demo-Speiseplan.",
+    "source": "Demo-Speiseplan · KW 30"
+  },
+  {
+    "intent": "absence",
+    "label": "Krankmeldung",
+    "keywords": ["krank", "krankmelden", "krankmeldung", "fehlt", "abmelden", "abwesenheit"],
+    "answer": "Eine Krankmeldung kann bis 07:45 Uhr über das Elternportal eingereicht werden. Bitte gib Name, Klasse und voraussichtliche Dauer an. Diese Demo speichert keine personenbezogenen Daten.",
+    "source": "Demo-Schulordnung · Abschnitt 4.2"
+  },
+  {
+    "intent": "office_hours",
+    "label": "Sekretariat",
+    "keywords": ["sekretariat", "öffnungszeiten", "offen", "erreichbar", "telefon", "kontakt"],
+    "answer": "Das Demo-Sekretariat ist Montag bis Freitag von 07:30 bis 12:30 Uhr erreichbar. Donnerstags zusätzlich von 14:00 bis 16:00 Uhr.",
+    "source": "Demo-Kontaktseite · Stand Juli 2026"
+  },
+  {
+    "intent": "school_start",
+    "label": "Unterrichtsbeginn",
+    "keywords": ["unterricht", "beginn", "start", "erste stunde", "uhrzeit", "schule beginnt"],
+    "answer": "Die erste Unterrichtsstunde beginnt in dieser Demo um 08:00 Uhr. Der Einlass ist ab 07:40 Uhr möglich.",
+    "source": "Demo-Stundenplan · Schuljahr 2026/27"
+  },
+  {
+    "intent": "allergens",
+    "label": "Allergene",
+    "keywords": ["allergie", "allergen", "gluten", "laktose", "nüsse", "nuss", "unverträglichkeit"],
+    "answer": "Allergeninformationen müssen vor Ort anhand der aktuellen Kennzeichnung geprüft werden. Die Demo nennt bewusst keine individuelle medizinische Empfehlung. Bei Unsicherheit hilft das Sekretariat weiter.",
+    "source": "Demo-Hinweis Allergene · Version 2"
+  },
+  {
+    "intent": "bus",
+    "label": "Schulbus",
+    "keywords": ["bus", "schulbus", "haltestelle", "abfahrt", "fahrplan", "verspätung"],
+    "answer": "Der Demo-Schulbus Linie S2 fährt regulär um 07:18 Uhr an der Haltestelle Ortsmitte ab. Live-Verspätungen sind nicht angebunden und müssen beim Verkehrsverbund geprüft werden.",
+    "source": "Demo-Fahrplan · Linie S2"
+  }
+]
+

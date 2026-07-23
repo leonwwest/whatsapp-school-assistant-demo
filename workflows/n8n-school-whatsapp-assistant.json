@@ -1,0 +1,230 @@
+{
+  "name": "Schulassistent – WhatsApp MVP Demo",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Demo starten",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-760, 80]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "message-id",
+              "name": "message_id",
+              "value": "wamid.demo-001",
+              "type": "string"
+            },
+            {
+              "id": "from-number",
+              "name": "from_number",
+              "value": "+4915112345678",
+              "type": "string"
+            },
+            {
+              "id": "message-text",
+              "name": "text",
+              "value": "Wie kann ich mein Kind krankmelden?",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "demo-message",
+      "name": "Demo WhatsApp Nachricht",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [-540, 80]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/webhooks/whatsapp",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "assistant-api",
+      "name": "Grounded Assistant API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-300, 80]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "handoff-condition",
+              "leftValue": "={{ $json.escalated }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "needs-human",
+      "name": "Human Handoff?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [-60, 80]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "handoff-status",
+              "name": "next_action",
+              "value": "An Sekretariat mit Gesprächskontext übergeben",
+              "type": "string"
+            },
+            {
+              "id": "handoff-priority",
+              "name": "priority",
+              "value": "manual_review",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "handoff",
+      "name": "Sekretariat Übergabe",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [200, -20]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "send-status",
+              "name": "next_action",
+              "value": "Antwort über WhatsApp Cloud API senden",
+              "type": "string"
+            },
+            {
+              "id": "send-mode",
+              "name": "delivery_mode",
+              "value": "demo_only",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "send-response",
+      "name": "WhatsApp Antwort vorbereiten",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [200, 180]
+    },
+    {
+      "parameters": {
+        "content": "## Produktionsanschluss\n\nIm echten MVP werden diese Demo-Bausteine ersetzt:\n\n1. **Manual Trigger** → Meta WhatsApp Webhook\n2. **Offline Grounding** → OpenAI mit abgerufenen, freigegebenen Quellen\n3. **Antwort vorbereiten** → WhatsApp Cloud API\n4. **Handoff** → Ticket/E-Mail/Teams an das Sekretariat\n\nDie Demo enthält keine echten Personen- oder Schuldaten.",
+        "height": 330,
+        "width": 420,
+        "color": 5
+      },
+      "id": "production-note",
+      "name": "Produktionsarchitektur",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-760, -340]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Demo starten": {
+      "main": [
+        [
+          {
+            "node": "Demo WhatsApp Nachricht",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Demo WhatsApp Nachricht": {
+      "main": [
+        [
+          {
+            "node": "Grounded Assistant API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Grounded Assistant API": {
+      "main": [
+        [
+          {
+            "node": "Human Handoff?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Human Handoff?": {
+      "main": [
+        [
+          {
+            "node": "Sekretariat Übergabe",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Antwort vorbereiten",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "9a99272c-24a5-4f67-9850-2cf5452b003f",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": []
+}
+

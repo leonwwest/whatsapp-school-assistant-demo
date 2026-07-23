@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Portfolio-Demo eines sicheren WhatsApp-Assistenten für Schulen."
+    />
+    <title>Schulassistent · Workflow-Demo</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">LW</span>
+        <div>
+          <strong>Schulassistent</strong>
+          <span>WhatsApp · n8n · Grounded AI</span>
+        </div>
+      </div>
+      <div class="status">
+        <span class="status-dot"></span>
+        Offline-Demo · Synthetische Daten
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="intro">
+        <p class="eyebrow">Portfolio-Demo · Leon Westermeir</p>
+        <h1>Von der Elternfrage zur <em>sicheren Antwort</em>.</h1>
+        <p>
+          Ein nachvollziehbarer MVP für einen schulischen WhatsApp-Assistenten:
+          Eingang per Webhook, Intent-Erkennung, freigegebene Wissensquelle,
+          Schutzregeln und Übergabe an einen Menschen.
+        </p>
+        <div class="metrics">
+          <article>
+            <strong>&lt; 1 s</strong>
+            <span>Demo-Antwortzeit</span>
+          </article>
+          <article>
+            <strong>6</strong>
+            <span>Freigegebene Quellen</span>
+          </article>
+          <article>
+            <strong>0</strong>
+            <span>Echte Personendaten</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="demo-grid">
+        <article class="phone" aria-label="Chat-Demo">
+          <div class="phone-top">
+            <div class="avatar">SA</div>
+            <div>
+              <strong>Schulassistent</strong>
+              <span><i></i> Demo ist bereit</span>
+            </div>
+            <span class="phone-menu">•••</span>
+          </div>
+
+          <div id="chat" class="chat" aria-live="polite">
+            <div class="message assistant">
+              Hallo! Ich beantworte Fragen nur aus freigegebenen Demo-Quellen.
+              Wobei kann ich helfen?
+              <time>13:00</time>
+            </div>
+          </div>
+
+          <div class="quick-prompts" aria-label="Beispielfragen">
+            <button type="button" data-prompt="Was gibt es heute vegetarisch zu essen?">
+              Speiseplan
+            </button>
+            <button type="button" data-prompt="Wie kann ich mein Kind krankmelden?">
+              Krankmeldung
+            </button>
+            <button type="button" data-prompt="Wann ist das Sekretariat geöffnet?">
+              Sekretariat
+            </button>
+            <button type="button" data-prompt="Mein Kind ist verletzt und hat Atemnot">
+              Schutzfall
+            </button>
+          </div>
+
+          <form id="message-form" class="composer">
+            <label class="sr-only" for="message">Nachricht</label>
+            <input
+              id="message"
+              name="message"
+              autocomplete="off"
+              placeholder="Frage eingeben …"
+              maxlength="1200"
+              required
+            />
+            <button type="submit" aria-label="Nachricht senden">↑</button>
+          </form>
+        </article>
+
+        <aside class="workflow-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Live-Verarbeitung</p>
+              <h2>Workflow-Protokoll</h2>
+            </div>
+            <span id="run-state" class="run-state">Bereit</span>
+          </div>
+
+          <ol id="trace" class="trace">
+            <li class="idle">
+              <span>1</span>
+              <div><strong>Webhook</strong><small>Wartet auf Nachricht</small></div>
+            </li>
+            <li class="idle">
+              <span>2</span>
+              <div><strong>Intent & Kontext</strong><small>Noch nicht gestartet</small></div>
+            </li>
+            <li class="idle">
+              <span>3</span>
+              <div><strong>Grounded AI</strong><small>Nur aus Quellen antworten</small></div>
+            </li>
+            <li class="idle">
+              <span>4</span>
+              <div><strong>Safety & Handoff</strong><small>Schutzregeln prüfen</small></div>
+            </li>
+          </ol>
+
+          <div id="result-card" class="result-card hidden">
+            <div>
+              <span>Intent</span>
+              <strong id="intent">–</strong>
+            </div>
+            <div>
+              <span>Konfidenz</span>
+              <strong id="confidence">–</strong>
+            </div>
+            <div class="source-row">
+              <span>Quelle</span>
+              <strong id="source">–</strong>
+            </div>
+          </div>
+
+          <div class="architecture">
+            <span>WhatsApp</span>
+            <b>→</b>
+            <span>n8n</span>
+            <b>→</b>
+            <span>Knowledge</span>
+            <b>→</b>
+            <span>OpenAI-ready</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="guardrails">
+        <article>
+          <span>01</span>
+          <h3>Keine Halluzinationen</h3>
+          <p>Ohne passende, freigegebene Quelle wird die Anfrage weitergegeben.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Datenschutz zuerst</h3>
+          <p>Die Vorführung verwendet ausschließlich erfundene Inhalte und Nutzer.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Produktionsfähig geplant</h3>
+          <p>Webhook, n8n-Flow und API sind klar getrennt und austauschbar.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      Technische Demo · FastAPI · n8n-Workflow · Human Handoff · Juli 2026
+    </footer>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
+
