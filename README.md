@@ -1,5 +1,7 @@
 # WhatsApp-Schulassistent – n8n / Grounded-AI Demo
 
+[![Tests](https://github.com/leonwwest/whatsapp-school-assistant-demo/actions/workflows/tests.yml/badge.svg)](https://github.com/leonwwest/whatsapp-school-assistant-demo/actions/workflows/tests.yml)
+
 Lauffähiger Portfolio-MVP für einen schulischen WhatsApp-Assistenten. Die Demo
 zeigt den vollständigen Kernprozess:
 
@@ -31,7 +33,8 @@ flowchart LR
 ## Schnellstart
 
 ```bash
-cd /Users/leonwestermeir/Documents/whatsapp-school-assistant-demo
+git clone https://github.com/leonwwest/whatsapp-school-assistant-demo.git
+cd whatsapp-school-assistant-demo
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -92,3 +95,7 @@ Vor einem echten Einsatz werden mindestens benötigt:
 
 Ein kurzer Vorführablauf und konkrete Discovery-Fragen stehen in
 [`DEMO-GESPRAECH.md`](DEMO-GESPRAECH.md).
+
+## Lizenz
+
+Der Quellcode dieser Portfolio-Demo steht unter der [MIT-Lizenz](LICENSE).
