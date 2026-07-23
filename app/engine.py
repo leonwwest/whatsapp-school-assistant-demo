@@ -76,7 +76,9 @@ def answer_message(message: str) -> AssistantResult:
     if not cleaned:
         trace.extend(
             [
-                TraceStep("Intent-Erkennung", "warning", "Keine verwertbare Frage erkannt"),
+                TraceStep(
+                    "Intent-Erkennung", "warning", "Keine verwertbare Frage erkannt"
+                ),
                 TraceStep("Übergabe", "human", "Sekretariat übernimmt"),
             ]
         )
@@ -130,10 +132,7 @@ def answer_message(message: str) -> AssistantResult:
 
     knowledge = load_knowledge()
     ranked = sorted(
-        (
-            (_token_score(cleaned, entry["keywords"]), entry)
-            for entry in knowledge
-        ),
+        ((_token_score(cleaned, entry["keywords"]), entry) for entry in knowledge),
         key=lambda item: item[0],
         reverse=True,
     )
@@ -148,7 +147,9 @@ def answer_message(message: str) -> AssistantResult:
                     "Kein Wissensbereich zuverlässig erkannt",
                 ),
                 TraceStep("Wissensabruf", "empty", "Keine belastbare Quelle gefunden"),
-                TraceStep("Übergabe", "human", "Anfrage wird mit Kontext weitergegeben"),
+                TraceStep(
+                    "Übergabe", "human", "Anfrage wird mit Kontext weitergegeben"
+                ),
             ]
         )
         return AssistantResult(
@@ -164,6 +165,16 @@ def answer_message(message: str) -> AssistantResult:
         )
 
     confidence = min(0.55 + (best_score * 0.12), 0.98)
+
+    # ---------------------------------------------------------------
+    # PROD-AUSTAUSCHPUNKT (OpenAI):
+    # In Produktion wird `best["answer"]` hier nicht direkt ausgegeben.
+    # Stattdessen generiert ein OpenAI-Modell die Antwort ausschließlich
+    # aus dem abgerufenen Quellkontext (Grounded Answering), z. B.:
+    #   reply = openai_respond(context=best["answer"], question=message)
+    # Die Offline-Demo bleibt bewusst deterministisch und gibt die
+    # hinterlegte Quellenantwort unverändert zurück (siehe README).
+    # ---------------------------------------------------------------
     trace.extend(
         [
             TraceStep(
@@ -197,4 +208,3 @@ def answer_message(message: str) -> AssistantResult:
         escalated=False,
         trace=trace,
     )
-

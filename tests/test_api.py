@@ -43,4 +43,3 @@ def test_whatsapp_webhook_contract() -> None:
     assert payload["message_id"] == "wamid.demo-001"
     assert payload["delivery"] == "simulated"
     assert payload["intent"] == "absence"
-

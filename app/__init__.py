@@ -1,2 +1,1 @@
 """School assistant demo package."""
-

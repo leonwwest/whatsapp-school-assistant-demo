@@ -36,4 +36,3 @@ def test_knowledge_base_contains_only_demo_sources() -> None:
 
     assert len(entries) >= 5
     assert all("Demo" in entry["source"] for entry in entries)
-

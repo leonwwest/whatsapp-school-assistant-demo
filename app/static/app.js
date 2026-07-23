@@ -4,8 +4,10 @@ const chat = document.querySelector("#chat");
 const trace = document.querySelector("#trace");
 const runState = document.querySelector("#run-state");
 const resultCard = document.querySelector("#result-card");
+const emptyState = document.querySelector("#empty-state");
 const intent = document.querySelector("#intent");
 const confidence = document.querySelector("#confidence");
+const confidenceFill = document.querySelector("#confidence-fill");
 const source = document.querySelector("#source");
 
 const now = () =>
@@ -106,6 +108,7 @@ async function sendMessage(message) {
   addMessage(message, "user");
   resetTrace();
   resultCard.classList.add("hidden");
+  confidenceFill.style.width = "0";
   runState.textContent = "Verarbeitung";
   runState.classList.add("running");
   const typing = addTyping();
@@ -129,7 +132,11 @@ async function sendMessage(message) {
     intent.textContent = data.intent;
     confidence.textContent = `${Math.round(data.confidence * 100)} %`;
     source.textContent = data.source;
+    emptyState.classList.add("hidden");
     resultCard.classList.remove("hidden");
+    requestAnimationFrame(() => {
+      confidenceFill.style.width = `${Math.round(data.confidence * 100)}%`;
+    });
     runState.textContent = data.escalated ? "Übergeben" : "Beantwortet";
   } catch (error) {
     typing.remove();
@@ -162,4 +169,3 @@ document.querySelectorAll("[data-prompt]").forEach((button) => {
     form.requestSubmit();
   });
 });
-

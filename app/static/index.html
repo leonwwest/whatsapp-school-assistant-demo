@@ -75,6 +75,7 @@
           </div>
 
           <div id="chat" class="chat" aria-live="polite">
+            <div class="chat-date">Heute</div>
             <div class="message assistant">
               Hallo! Ich beantworte Fragen nur aus freigegebenen Demo-Quellen.
               Wobei kann ich helfen?
@@ -91,6 +92,12 @@
             </button>
             <button type="button" data-prompt="Wann ist das Sekretariat geöffnet?">
               Sekretariat
+            </button>
+            <button type="button" data-prompt="Wann fährt der Schulbus ab?">
+              Schulbus
+            </button>
+            <button type="button" data-prompt="Wann beginnt der Unterricht?">
+              Unterrichtsbeginn
             </button>
             <button type="button" data-prompt="Mein Kind ist verletzt und hat Atemnot">
               Schutzfall
@@ -145,6 +152,27 @@
             </li>
           </ol>
 
+          <div id="empty-state" class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H9l-5 4.5V5.5Z"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M8 8.5h8M8 11.5h5"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+            </svg>
+            <p>
+              Sende links eine Nachricht oder wähle eine Beispielfrage – hier
+              erscheint dann live, wie die Anfrage verarbeitet wird.
+            </p>
+          </div>
+
           <div id="result-card" class="result-card hidden">
             <div>
               <span>Intent</span>
@@ -153,6 +181,9 @@
             <div>
               <span>Konfidenz</span>
               <strong id="confidence">–</strong>
+              <div class="confidence-bar" aria-hidden="true">
+                <i id="confidence-fill"></i>
+              </div>
             </div>
             <div class="source-row">
               <span>Quelle</span>

@@ -6,7 +6,7 @@
 Lauffähiger Portfolio-MVP für einen schulischen WhatsApp-Assistenten. Die Demo
 zeigt den vollständigen Kernprozess:
 
-![Demo-Oberfläche](demo-preview.png)
+![Demo-Oberfläche](demo-preview.gif)
 
 **Direkt ausprobieren:** [whatsapp-school-assistant-demo.vercel.app](https://whatsapp-school-assistant-demo.vercel.app)
 
