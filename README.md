@@ -1,11 +1,14 @@
 # WhatsApp-Schulassistent – n8n / Grounded-AI Demo
 
 [![Tests](https://github.com/leonwwest/whatsapp-school-assistant-demo/actions/workflows/tests.yml/badge.svg)](https://github.com/leonwwest/whatsapp-school-assistant-demo/actions/workflows/tests.yml)
+[![Live-Demo](https://img.shields.io/badge/Live--Demo-öffnen-b7f34a)](https://whatsapp-school-assistant-demo.vercel.app)
 
 Lauffähiger Portfolio-MVP für einen schulischen WhatsApp-Assistenten. Die Demo
 zeigt den vollständigen Kernprozess:
 
 ![Demo-Oberfläche](demo-preview.png)
+
+**Direkt ausprobieren:** [whatsapp-school-assistant-demo.vercel.app](https://whatsapp-school-assistant-demo.vercel.app)
 
 1. Eingang einer WhatsApp-ähnlichen Nachricht per Webhook
 2. Normalisierung und transparente Intent-Erkennung
